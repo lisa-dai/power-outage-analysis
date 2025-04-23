@@ -103,7 +103,7 @@ This pivot table shows the average outage duration (in minutes) across different
 
  I chose to drop rows with missing values for the features used in my model. Given the dataset’s large size, this did not meaningfully reduce the data. Although imputation can be helpful, the low volume of missing entries made it unnecessary. Removing them simplified our model and ensured compatibility with the algorithms and techniques used.
 
- ## Step 3: Framing a Prediction Problem
+## Step 3: Framing a Prediction Problem
 
 Can we predict the duration of a power outage based on factors like climate region, state economic characteristics, outage cause, and month?
 
@@ -123,9 +123,7 @@ Below are the features I used in the baseline model:
 * <code>CAUSE.CATEGORY</code> (nominal) captures high-level reasons for outages, which are directly linked to their expected durations (i.e., intentional attack vs. severe weather).
 
 Categorical variables are encoded using OneHotEncoder to convert nominal categories into dummy variables.
-Numerical variables are left as-is besides standardization using StandardScaler.
-
-The modeling algorithm I chose was LinearRegression.
+Numerical variables are left as-is besides standardization using StandardScaler. The modeling algorithm I chose was LinearRegression, as it’s a straightforward and interpretable modeling algorithm that’s typically a strong starting point for regression problems.
 
 The RMSE of the baseline model is 7007.01. This equals an average deviation of 116.78 hours, an extremely high value. We can conclude that the baseline model is not good.
 
