@@ -21,3 +21,26 @@ The following are the columns that were used at some point during my analysis:
 * <code>POSTAL.CODE</code>: The postal code (state abbreviation) of the state in which the outage event occured
 * <code>TOTAL.PRICE</code>: Average monthly electricity price in the U.S. state (cents/kilowatt-hour)
 * <code>OUTAGE.DURATION</code>: Duration of outage events (in minutes)
+
+## Step 2: Data Cleaning and Exploratory Data Analysis
+
+### Data Cleaning
+1. **Cleaning Excel File** <br>
+The data was given as an Excel file rather than a CSV. I opened the data in Google Sheets and determined numerous rows and columns of the sheet that were blank or irrelevant for data analysis. This included the first five rows, which were blank outside of general descriptions of the data.
+2. **Replacing Missing Values** <br>
+In the columns <code>OUTAGE.START.DATE</code>, <code>OUTAGE.START.TIME</code>, <code>OUTAGE.RESTORATION.DATE</code>, and <code>OUTAGE.RESTORATION.TIME</code>, I replaced any zero values with np.nan, treating them as missing data. A value of zero in these fields is unlikely to represent an actual measurement and is more plausibly a placeholder indicating that the true value is unavailable.
+3. **Dropping Rows with Missing Values** <br>
+In columns <code>CLIMATE.REGION</code>, <code>PC.REALGSP.REL</code>, <code>MONTH</code>, <code>U.S._STATE</code> and <code>OUTAGE.DURATION</code>, I dropped all rows in which the data was not applicable, as it was important for my analysis that these column's values were present.
+5. **Combining Date and Time Columns** <br>
+The dataset provides the start date and time of each power outage through the columns <code>OUTAGE.START.DATE</code> and <code>OUTAGE.START.TIME</code>. For the purposes of my analysis, I combined these into a single pd.Timestamp column named <code>OUTAGE.START</code>. Similarly, I merged <code>OUTAGE.RESTORATION.DATE</code> and <code>OUTAGE.RESTORATION.TIME</code> into a new pd.Timestamp column called <code>OUTAGE.RESTORATION</code>.
+6. **Adding <code>MONTH.NAME</code> Column** <br>
+The dataset provides the month the outage event occured using numbers (i.e. 1 for January). For the purpose of readability, I created a new column named <code>MONTH.NAME</code> which converted these into the names of the months instead.
+7. **Extracting Relevant Columns** <br>
+Finally, I dropped the columns that will not be used during my investigation.
+
+ <iframe
+ src="assets/outages-head.html"
+ width="800"
+ height="600"
+ frameborder="0"
+ ></iframe>
