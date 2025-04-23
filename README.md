@@ -117,10 +117,10 @@ To evaluate the model, I will use Root Mean Squared Error (RMSE). While RMSE is 
 
 Below are the features I used in the baseline model: 
 
-* <code>MONTH.NAME</code> (nominal) is useful for identifying temporal or seasonal patterns in outages
-* <code>CLIMATE.REGION</code> (nominal) provides geographic specificity that can account for localized infrastructure or response capabilities.
-* <code>PC.REALGSP.REL</code> (quantitative)
-* <code>CAUSE.CATEGORY</code> (nominal) captures high-level reasons for outages, which are directly linked to their expected durations (i.e., intentional attack vs. severe weather).
+* <code>MONTH.NAME</code> (nominal) helps capture seasonal or temporal trends that may influence outage frequency or severity.
+* <code>CLIMATE.REGION</code> (nominal) reflects geographic climate zones, which can affect weather-related outage patterns.
+* <code>PC.REALGSP.REL</code> (quantitative) indicates the relative economic output of a state, potentially correlating with infrastructure quality or emergency response capacity.
+* <code>CAUSE.CATEGORY</code> (nominal) represents the overarching cause of an outage, providing essential insight into expected duration (e.g., planned maintenance vs. extreme weather).
 
 Categorical variables are encoded using OneHotEncoder to convert nominal categories into dummy variables.
 Numerical variables are left as-is besides standardization using StandardScaler. The modeling algorithm I chose was LinearRegression, as it’s a straightforward and interpretable modeling algorithm that’s typically a strong starting point for regression problems.
