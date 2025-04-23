@@ -90,7 +90,14 @@ This plot reveals that Wisconsin has the highest average outage duration, with N
 
  <b>Aggregates</b> <br>
 
- TODO
+ <iframe
+ src="assets/pivot.html"
+ width="800"
+ height="600"
+ frameborder="0"
+ ></iframe>
+
+This pivot table shows the average outage duration (in minutes) across different climate regions and months, helping me observe temporal and regional patterns. By structuring the data this way, I can spot seasonal trends (e.g. longer outages during summer or winter months) and regional vulnerabilities (e.g. regions prone to extreme weather).
 
 <b>Imputation</b> <br>
 
