@@ -44,3 +44,46 @@ Finally, I dropped the columns that will not be used during my investigation.
  height="600"
  frameborder="0"
  ></iframe>
+
+ ### Univariate Analysis
+I began by looking at the distributions of relevant columns and drawing plots in order to get a better understanding of the data. First, I plotted a bar graph showing the distribution of power outages by major cause:
+
+<iframe
+ src="assets/fig-cause.html"
+ width="800"
+ height="600"
+ frameborder="0"
+ ></iframe>
+
+You can see that the most common cause by far is severe weather, though intentional attacks also comprise a significant number of outages. This tells me that variables related to weather will likely be a good predictor for power outage severity.
+
+<iframe
+ src="assets/fig-region.html"
+ width="800"
+ height="600"
+ frameborder="0"
+ ></iframe>
+
+ The Northeast region has the most number of power outages by far. The variety in power outage distribution among different power outages tells me that there may be some pattern with climate and power outage severity.
+
+ ### Bivariate Analysis
+
+ To further my investigation, I need to find patterns between columns to identify possible associations.
+
+ <iframe
+ src="assets/fig-state.html"
+ width="800"
+ height="600"
+ frameborder="0"
+ ></iframe>
+
+This plot reveals that Wisconsin has the highest average outage duration, with New York and West Virginia following closely behind. Notably, most states with higheroutage durations on average are in either the Midwest/Eastern region of the United States, with the Western states having much lower average durations.
+
+ <iframe
+ src="assets/month-duration.html"
+ width="800"
+ height="600"
+ frameborder="0"
+ ></iframe>
+
+ September, October, January, August, and December trend towards longer outage durations. These months tend to be colder, suggesting again that weather may be correlated to power outage duration.
