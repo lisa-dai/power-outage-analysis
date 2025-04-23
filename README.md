@@ -128,3 +128,29 @@ Numerical variables are left as-is besides standardization using StandardScaler.
 The baseline model has an RMSE of 7125.75 minutes, which translates to an average error of approximately 119 hours. This large deviation indicates that the model struggles to accurately predict outage durations, suggesting it is not a reliable predictor in its current form.
 
 ## Step 5: Final Model
+
+My final model includes additional features that provide greater detail and improve predictive accuracy.
+
+I added one new predictive feature:
+
+* <code>POPPCT_URBAN</code> (quantitative) represents how urbanized the state experiencing the power outage is. This may influence outage duration, as more urbanized areas could have denser infrastructure and faster response times, or conversely, more complex systems that take longer to repair when disrupted.
+
+I selected the RandomForestRegressor because it’s well-suited for predicting continuous outcomes like outage duration. This algorithm leverages the power of multiple decision trees, averaging their predictions to produce more accurate and stable results. It handles both numerical and categorical variables effectively and excels at capturing complex, non-linear relationships between features. Additionally, by aggregating across many trees, it reduces the risk of overfitting that can occur with single decision trees, making it a robust choice for this task.
+
+Within my sklearn Pipeline, I also create a new feature:
+
+* I transformed POPPCT_URBAN (percent urban population) using a QuantileTransformer. This reshapes the distribution to a more uniform or normal-like shape, which can help tree-based models better learn thresholds in skewed data.
+
+I used GridSearchCV to perform a search for the best RandomForestRegressor parameters:
+
+* randomforestregressor__n_estimators: Tuning the number of trees (e.g., 100, 200) helps balance model accuracy and training time. More trees generally improve accuracy but increase computation time.
+
+* randomforestregressor__max_depth: This hyperparameter controls tree complexity. Tuning this value helps prevent overfitting (too deep) or underfitting (too shallow) by adjusting tree depth.
+
+* randomforestregressor__min_samples_split: Sets the minimum samples required to split an internal node. Larger values (e.g., 5, 10) prevent overfitting by requiring more data for splits.
+
+* randomforestregressor__min_samples_leaf: Determines the minimum samples at a leaf node. Larger values (e.g., 2, 5) help reduce overfitting by ensuring leaves contain enough data to generalize well.
+
+The hyperparameters that performed the best were n_estimators = 100, max_depth = 10, min_samples_split = 2, min_samples_leaf = 5.
+
+The RMSE of the final model evaluated to 6980.43, which is an improvement from the baseline model’s RMSE of 7125.75, since RMSE should be minimized.
