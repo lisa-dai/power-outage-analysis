@@ -1,4 +1,4 @@
-# power-outage-analysis
+## What Characteristics are Associated with High Power Outage Length?
 
 Power outages can be devastating—its effects can range from small inconveniences to detrimental problems like safety hazards, disrupted communications, and economic losses. Loss of heating or cooling systems can be dangerous, particularly for vulnerable populations like the elderly or those with underlying health conditions, while food spoiling can be devastating for the food-insecure. Outages can also affect critical services like mobile phone service, landlines, banks, and gas stations, affecting daily life. However, if energy companies can predict power outage severity in advance, could they theoretically better prepare, allocate resources, and therefore minimize harm?
 
