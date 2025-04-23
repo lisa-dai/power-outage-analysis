@@ -125,6 +125,6 @@ Below are the features I used in the baseline model:
 Categorical variables are encoded using OneHotEncoder to convert nominal categories into dummy variables.
 Numerical variables are left as-is besides standardization using StandardScaler. The modeling algorithm I chose was LinearRegression, as it’s a straightforward and interpretable modeling algorithm that’s typically a strong starting point for regression problems.
 
-The RMSE of the baseline model is 7007.01. This equals an average deviation of 116.78 hours, an extremely high value. We can conclude that the baseline model is not good.
+The baseline model has an RMSE of 7007.01 minutes, which translates to an average error of approximately 116.78 hours. This large deviation indicates that the model struggles to accurately predict outage durations, suggesting it is not a reliable predictor in its current form.
 
 ## Step 5: Final Model
