@@ -45,7 +45,7 @@ Finally, I dropped the columns that will not be used during my investigation.
  frameborder="0"
  ></iframe>
 
- ### Univariate Analysis
+<b>Univariate Analysis</b> <br>
 I began by looking at the distributions of relevant columns and drawing plots in order to get a better understanding of the data. First, I plotted a bar graph showing the distribution of power outages by major cause:
 
 <iframe
@@ -66,7 +66,7 @@ You can see that the most common cause by far is severe weather, though intentio
 
  The Northeast region has the most number of power outages by far. The variety in power outage distribution among different power outages tells me that there may be some pattern with climate and power outage severity.
 
- ### Bivariate Analysis
+<b>Bivariate Analysis</b> <br>
 
  To further my investigation, I need to find patterns between columns to identify possible associations.
 
@@ -86,4 +86,40 @@ This plot reveals that Wisconsin has the highest average outage duration, with N
  frameborder="0"
  ></iframe>
 
- September, October, January, August, and December trend towards longer outage durations. These months tend to be colder, suggesting again that weather may be correlated to power outage duration.
+ September, October, January, August, and December trend towards longer outage durations. These months tend to be colder, suggesting again that weather may be correlated to power outage duration. <br>
+
+ <b>Aggregates</b> <br>
+
+ TODO
+
+<b>Imputation</b> <br>
+
+ I chose to drop rows with missing values for the features used in my model. Given the dataset’s large size, this did not meaningfully reduce the data. Although imputation can be helpful, the low volume of missing entries made it unnecessary. Removing them simplified our model and ensured compatibility with the algorithms and techniques used.
+
+ ## Step 3: Framing a Prediction Problem
+
+Can we predict the duration of a power outage based on factors like climate region, state economic characteristics, outage cause, and month?
+
+This is a regression problem, as the target variable,<code>OUTAGE.DURATION</code> is a continuous numerical value measured in minutes. I selected <code>OUTAGE.DURATION</code> as my response variable because the longer a power outage is, the greater impact there is on residents and in overall financial loss. Accurate predictions could help energy providers allocate resources more effectively and inform customers about expected service restoration times.
+
+All predictor variables should be available at the time of prediction (the start time of the outage) besides outcome metrics <code>OUTAGE.RESTORATION.DATE</code> and <code>OUTAGE.RESTORATION.TIME</code>, and other severity metrics like <code>DEMAND.LOSS.MW</code> and <code>CUSTOMERS.AFFECTED</code>.
+
+To evaluate the model, I will use Root Mean Squared Error (RMSE). While RMSE is sensitive to outliers, this is advantageous in our context as large prediction errors during major outages could have serious consequences. RMSE is also preferred over Mean Absolute Error (MAE) in this case, as it penalizes larger errors more heavily. RMSE also retains the same unit (minutes) as the target variable, making interpretation more intuitive, unlike MSE.
+
+## Step 4: Baseline Model
+
+Below are the features I used in the baseline model: 
+
+* <code>MONTH.NAME</code> (nominal) is useful for identifying temporal or seasonal patterns in outages
+* <code>CLIMATE.REGION</code> (nominal) provides geographic specificity that can account for localized infrastructure or response capabilities.
+* <code>PC.REALGSP.REL</code> (quantitative)
+* <code>CAUSE.CATEGORY</code> (nominal) captures high-level reasons for outages, which are directly linked to their expected durations (i.e., intentional attack vs. severe weather).
+
+Categorical variables are encoded using OneHotEncoder to convert nominal categories into dummy variables.
+Numerical variables are left as-is besides standardization using StandardScaler.
+
+The modeling algorithm I chose was LinearRegression.
+
+The RMSE of the baseline model is 7007.01. This equals an average deviation of 116.78 hours, an extremely high value. We can conclude that the baseline model is not good.
+
+## Step 5: Final Model
