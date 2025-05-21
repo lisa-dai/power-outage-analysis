@@ -125,7 +125,7 @@ Below are the features I used in the baseline model:
 Categorical variables are encoded using OneHotEncoder to convert nominal categories into dummy variables.
 Numerical variables are left as-is besides standardization using StandardScaler. The modeling algorithm I chose was LinearRegression, as it’s a straightforward and interpretable modeling algorithm that’s typically a strong starting point for regression problems.
 
-The baseline model has an RMSE of 7125.75 minutes, which translates to an average error of approximately 119 hours. This large deviation indicates that the model struggles to accurately predict outage durations, suggesting it is not a reliable predictor in its current form.
+The baseline model has an RMSE of 1369.75 minutes, which translates to an average error of approximately 119 hours. This large deviation indicates that the model struggles to accurately predict outage durations, suggesting it is not a reliable predictor in its current form.
 
 ## Step 5: Final Model
 
@@ -153,4 +153,4 @@ I used GridSearchCV to perform a search for the best RandomForestRegressor param
 
 The hyperparameters that performed the best were n_estimators = 100, max_depth = 10, min_samples_split = 2, min_samples_leaf = 5.
 
-The RMSE of the final model evaluated to 6980.43, which is an improvement from the baseline model’s RMSE of 7125.75, since RMSE should be minimized.
+The RMSE of the final model evaluated to 1224.43, which is an improvement from the baseline model’s RMSE of 1369.75, since RMSE should be minimized.
